@@ -1,3 +1,4 @@
+console.log("Script loaded");
 const socket = io();
 
 // Show chat container and hide auth section after login
