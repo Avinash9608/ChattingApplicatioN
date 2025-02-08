@@ -51,14 +51,11 @@ window.signup = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch(
-    "https://chattingapplication-me79.onrender.com/signup",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: email.split("@")[0], email, password }),
-    }
-  );
+  const res = await fetch("http://localhost:5500/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username: email.split("@")[0], email, password }),
+  });
 
   const data = await res.json();
   alert(data.message);
@@ -69,14 +66,11 @@ window.login = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch(
-    "https://chattingapplication-me79.onrender.com/login",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    }
-  );
+  const res = await fetch("http://localhost:5500/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
 
   const data = await res.json();
   alert(data.message);
