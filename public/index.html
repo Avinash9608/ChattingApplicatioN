@@ -126,7 +126,7 @@
         <div id="chat-box"></div>
 
         <!-- Message Input Section -->
-        <div class="message-input">
+        <!-- <div class="message-input">
           <input
             type="text"
             id="message"
@@ -142,6 +142,29 @@
           </label>
           <input type="file" id="fileInput" class="file-input" />
           <button onclick="sendMessage()" class="btn send-btn">Send</button>
+        </div> -->
+        <div class="message-input">
+          <input
+            type="text"
+            id="message"
+            placeholder="Type a message"
+            class="input-box"
+          />
+          <label for="fileInput" class="file-label">
+            <img
+              src="https://cdn-icons-png.freepik.com/512/8526/8526858.png?ga=GA1.1.1533417433.1733846717"
+              alt="Upload"
+              class="upload-icon"
+            />
+          </label>
+          <input
+            type="file"
+            id="fileInput"
+            class="file-input"
+            onchange="sendFile()"
+          />
+          <button onclick="sendMessage()" class="btn send-btn">Send</button>
+          <!-- <button onclick="sendFile()" class="btn send-btn">Send File</button> -->
         </div>
       </div>
     </div>
