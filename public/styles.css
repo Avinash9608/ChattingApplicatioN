@@ -279,7 +279,7 @@ body {
   padding: 13px;
   border: none;
   outline: none;
-  border-radius: 22px;
+  border-radius: 10px;
   background: rgba(133, 123, 123, 0.2);
   color: white; /* <-- Set text color to white */
 }
