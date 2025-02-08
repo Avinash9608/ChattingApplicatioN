@@ -12,39 +12,6 @@ const showAuth = () => {
   document.getElementById("chat-container").classList.add("hidden");
 };
 
-// const signup = async () => {
-//   const email = document.getElementById("email").value;
-//   const password = document.getElementById("password").value;
-
-//   const res = await fetch("http://localhost:5500/signup", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ username: email.split("@")[0], email, password }),
-//   });
-
-//   const data = await res.json();
-//   alert(data.message);
-//   if (res.ok) showChat();
-// };
-
-// const login = async () => {
-//   const email = document.getElementById("email").value;
-//   const password = document.getElementById("password").value;
-
-//   const res = await fetch("http://localhost:5500/login", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ email, password }),
-//   });
-
-//   const data = await res.json();
-//   alert(data.message);
-//   if (res.ok) {
-//     showChat();
-//     socket.emit("join", email);
-//   }
-// };
-
 // Attach functions to the window object
 window.signup = async () => {
   const email = document.getElementById("email").value;
