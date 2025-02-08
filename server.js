@@ -24,7 +24,7 @@ const io = new Server(server, {
 connectDB();
 
 // Middleware
-app.use(cors()); // CORS should come BEFORE static serving
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public"))); // Serve static files FIRST
 
@@ -137,7 +137,7 @@ io.on("connection", async (socket) => {
 //   }
 // });
 const PORT = process.env.PORT || 5500;
-server.listen(PORT, async () => {
+server.listen(PORT, "0.0.0.0", async () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 
   try {
