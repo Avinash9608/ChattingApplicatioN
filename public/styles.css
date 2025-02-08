@@ -157,3 +157,82 @@ body {
     opacity: 1;
   }
 }
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.profile-label img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #4caf50;
+}
+
+#profile-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid white;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+#profile-img:hover {
+  transform: scale(1.1);
+}
+
+#profile-pic {
+  display: none;
+}
+.user-email {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(45deg, #ff5722, #ff9800, #ffeb3b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.more-options {
+  position: relative;
+  display: inline-block;
+}
+
+.more-options button {
+  background: none;
+  border: none;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.options-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.options-menu .logout-btn {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  background: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.options-menu .logout-btn:hover {
+  background: #d32f2f;
+}
+
+/* Show the menu when active */
+.more-options.active .options-menu {
+  display: block;
+}

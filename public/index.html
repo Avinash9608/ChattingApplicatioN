@@ -1,3 +1,69 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="auth-container">
+        <h1 class="title">Chat Application</h1>
+        <input
+          type="text"
+          id="email"
+          placeholder="Enter Email"
+          class="input-box"
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter Password"
+          class="input-box"
+        />
+        <div class="btn-container">
+          <button onclick="signup()" class="btn">Signup</button>
+          <button onclick="login()" class="btn">Login</button>
+        </div>
+      </div>
+
+      <div id="chat-container" class="hidden">
+        <div class="profile-section">
+          <label for="profile-pic" class="profile-label">
+            <img
+              id="profile-img"
+              src="default-avatar.png"
+              alt="Profile Picture"
+            />
+          </label>
+          <input
+            type="file"
+            id="profile-pic"
+            accept="image/*"
+            onchange="updateProfilePic(event)"
+          />
+          <p id="user-email" class="user-email"></p>
+           Email will be updated here
+        </div>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+        <div id="chat-box"></div>
+        <div class="message-input">
+          <input
+            type="text"
+            id="message"
+            placeholder="Type a message"
+            class="input-box"
+          />
+          <button onclick="sendMessage()" class="btn send-btn">Send</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html> -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,7 +97,28 @@
       </div>
 
       <div id="chat-container" class="hidden">
-        <button onclick="logout()" class="logout-btn">Logout</button>
+        <div class="profile-section">
+          <label for="profile-pic" class="profile-label">
+            <img
+              id="profile-img"
+              src="default-avatar.png"
+              alt="Profile Picture"
+            />
+          </label>
+          <input
+            type="file"
+            id="profile-pic"
+            accept="image/*"
+            onchange="updateProfilePic(event)"
+          />
+          <p id="user-email" class="user-email"></p>
+          <div class="more-options">
+            <button onclick="toggleOptions()">&#x22EE;</button>
+            <div class="options-menu" id="options-menu">
+              <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+          </div>
+        </div>
         <div id="chat-box"></div>
         <div class="message-input">
           <input
