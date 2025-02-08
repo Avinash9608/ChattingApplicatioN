@@ -1,4 +1,4 @@
-const socket = io("http://localhost:5500");
+const socket = io();
 
 // Show chat container and hide auth section after login
 const showChat = () => {
