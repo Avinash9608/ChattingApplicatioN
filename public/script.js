@@ -1,4 +1,3 @@
-console.log("Script loaded");
 const socket = io();
 
 // Show chat container and hide auth section after login
@@ -51,7 +50,7 @@ window.signup = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("http://localhost:5500/signup", {
+  const res = await fetch("/signup", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username: email.split("@")[0], email, password }),
@@ -66,7 +65,7 @@ window.login = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("http://localhost:5500/login", {
+  const res = await fetch("/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
