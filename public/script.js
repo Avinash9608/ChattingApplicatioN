@@ -115,3 +115,29 @@ document.addEventListener("click", function (event) {
     moreOptions.classList.remove("active");
   }
 });
+window.sendFile = () => {
+  const fileInput = document.getElementById("fileInput");
+  const file = fileInput.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      socket.emit("file", { fileName: file.name, fileData: e.target.result });
+      addMessageToChat(
+        { email: "You", message: `Sent a file: ${file.name}` },
+        true
+      );
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+socket.on("file", (data) => {
+  const chatBox = document.getElementById("chat-box");
+  const fileLink = document.createElement("a");
+  fileLink.href = data.fileData;
+  fileLink.download = data.fileName;
+  fileLink.textContent = `Download ${data.fileName}`;
+  fileLink.classList.add("file-message");
+  chatBox.appendChild(fileLink);
+});
