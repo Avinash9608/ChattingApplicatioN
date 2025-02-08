@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Authentication Form (Hidden after login) -->
+      <div id="auth-container">
+        <h1 class="title">Chat Application</h1>
+        <input
+          type="text"
+          id="email"
+          placeholder="Enter Email"
+          class="input-box"
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter Password"
+          class="input-box"
+        />
+        <div class="btn-container">
+          <button onclick="signup()" class="btn">Signup</button>
+          <button onclick="login()" class="btn">Login</button>
+        </div>
+      </div>
+
+      <!-- Chat Section (Hidden initially, shows after login) -->
+      <div id="chat-container" class="hidden">
+        <button onclick="logout()" class="logout-btn">Logout</button>
+        <div id="chat-box"></div>
+        <div class="message-input">
+          <input
+            type="text"
+            id="message"
+            placeholder="Type a message"
+            class="input-box"
+          />
+          <button onclick="sendMessage()" class="btn send-btn">Send</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
