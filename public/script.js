@@ -13,7 +13,7 @@ const showAuth = () => {
   document.getElementById("chat-container").classList.add("hidden");
 };
 
-const signup = async () => {
+window.signup = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
@@ -31,7 +31,7 @@ const signup = async () => {
   }
 };
 
-const login = async () => {
+window.login = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
