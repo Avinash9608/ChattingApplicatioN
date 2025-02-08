@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const connectDB = require("./db");
+const path = require("path"); // Import path module
 
 const User = require("./models/User");
 const Message = require("./models/Message");
@@ -15,18 +16,17 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // Change if needed
+    origin: "*", // Or specify your allowed origins for production
     methods: ["GET", "POST"],
   },
 });
 
-// Connect to Database
 connectDB();
 
 // Middleware
+app.use(cors()); // CORS should come BEFORE static serving
 app.use(express.json());
-app.use(cors({ origin: "*" }));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public"))); // Serve static files FIRST
 
 // Signup Route
 app.post("/signup", async (req, res) => {
@@ -123,14 +123,26 @@ io.on("connection", async (socket) => {
 });
 
 // Start Server
+// const PORT = process.env.PORT || 5500;
+// server.listen(PORT, async () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+
+//   // Open frontend in browser dynamically
+//   try {
+//     const open = (await import("open")).default;
+//     await open("http://localhost:5500/index.html");
+//     console.log("Frontend opened in browser");
+//   } catch (err) {
+//     console.error("Error opening browser:", err);
+//   }
+// });
 const PORT = process.env.PORT || 5500;
 server.listen(PORT, async () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 
-  // Open frontend in browser dynamically
   try {
     const open = (await import("open")).default;
-    await open("http://localhost:5500/index.html");
+    await open(`http://localhost:${PORT}`); // Open without index.html
     console.log("Frontend opened in browser");
   } catch (err) {
     console.error("Error opening browser:", err);
