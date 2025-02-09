@@ -329,16 +329,38 @@ window.logout = () => {
 };
 
 // Send chat message
+// window.sendMessage = () => {
+//   const messageInput = document.getElementById("message");
+//   const message = messageInput.value.trim();
+
+//   if (message) {
+//     socket.emit("message", { message });
+//     addMessageToChat({ email: "You", message }, true);
+//     messageInput.value = "";
+//   }
+
+// };
 window.sendMessage = () => {
   const messageInput = document.getElementById("message");
   const message = messageInput.value.trim();
 
   if (message) {
-    socket.emit("message", { message });
+    socket.emit("message", { email: "You", message });
+
+    // If the message mentions @chatbot, ask the server to get a response
+    if (message.includes("@chatbot")) {
+      socket.emit("chatbot_request", message);
+    }
+
     addMessageToChat({ email: "You", message }, true);
     messageInput.value = "";
   }
 };
+
+// Listen for chatbot responses
+socket.on("chatbot_response", (data) => {
+  addMessageToChat({ email: "Chatbot", message: data.response }, false);
+});
 
 // Listen for incoming messages
 socket.on("message", (data) => {

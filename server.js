@@ -165,7 +165,7 @@ const path = require("path");
 const connectDB = require("./db");
 const User = require("./models/User");
 const Message = require("./models/Message");
-
+const axios = require("axios");
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -294,6 +294,42 @@ io.on("connection", async (socket) => {
   // Handle file message
   socket.on("file", (data) => {
     io.emit("file", data);
+  });
+
+  // // Handle chatbot requests
+  // socket.on("chatbot_request", async (message) => {
+  //   try {
+  //     const response = await axios.post(
+  //       "https://chatbot-rho-ochre.vercel.app/",
+  //       { message }
+  //     );
+  //     io.emit("chatbot_response", { response: response.data });
+  //   } catch (error) {
+  //     console.error("Chatbot API error:", error);
+  //     io.emit("chatbot_response", {
+  //       response: "Sorry, I'm unavailable right now.",
+  //     });
+  //   }
+  // });
+  socket.on("chatbot_request", async (message) => {
+    try {
+      const response = await axios.post(
+        "https://chatbot-73nn.onrender.com/chat",
+        { message }
+      );
+
+      // ✅ Extract the actual message
+      io.emit("chatbot_response", { response: response.data.response });
+    } catch (error) {
+      console.error(
+        "Chatbot API error:",
+        error.response?.data || error.message
+      );
+
+      io.emit("chatbot_response", {
+        response: "Sorry, I’m unavailable right now. Please try again later.",
+      });
+    }
   });
 
   socket.on("disconnect", () => {
