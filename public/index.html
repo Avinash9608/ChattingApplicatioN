@@ -1,69 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat App</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="/socket.io/socket.io.js"></script>
-    <script defer src="script.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div id="auth-container">
-        <h1 class="title">Chat Application</h1>
-        <input
-          type="text"
-          id="email"
-          placeholder="Enter Email"
-          class="input-box"
-        />
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter Password"
-          class="input-box"
-        />
-        <div class="btn-container">
-          <button onclick="signup()" class="btn">Signup</button>
-          <button onclick="login()" class="btn">Login</button>
-        </div>
-      </div>
-
-      <div id="chat-container" class="hidden">
-        <div class="profile-section">
-          <label for="profile-pic" class="profile-label">
-            <img
-              id="profile-img"
-              src="default-avatar.png"
-              alt="Profile Picture"
-            />
-          </label>
-          <input
-            type="file"
-            id="profile-pic"
-            accept="image/*"
-            onchange="updateProfilePic(event)"
-          />
-          <p id="user-email" class="user-email"></p>
-           Email will be updated here
-        </div>
-        <button onclick="logout()" class="logout-btn">Logout</button>
-        <div id="chat-box"></div>
-        <div class="message-input">
-          <input
-            type="text"
-            id="message"
-            placeholder="Type a message"
-            class="input-box"
-          />
-          <button onclick="sendMessage()" class="btn send-btn">Send</button>
-        </div>
-      </div>
-    </div>
-  </body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -73,6 +7,46 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="/socket.io/socket.io.js"></script>
     <script defer src="script.js"></script>
+    <style>
+      /* Video Call Button - Rectangular & Below Email */
+      .video-call-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #ff4b2b, #ff416c);
+        color: white;
+        border: none;
+        width: 118px;
+        height: 20px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(255, 65, 108, 0.5);
+        transition: all 0.3s ease-in-out;
+        margin-top: 43px; /* Space below email */
+        margin-left: -142px;
+      }
+
+      .video-call-btn:hover {
+        background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        box-shadow: 0 6px 15px rgba(255, 65, 108, 0.7);
+      }
+
+      .video-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+      }
+
+      /* Center the button below email */
+      .video-call-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -103,7 +77,7 @@
           <label for="profile-pic" class="profile-label">
             <img
               id="profile-img"
-              src="default-avatar.png"
+              src="https://as2.ftcdn.net/jpg/05/89/93/27/1000_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.jpg"
               alt="Profile Picture"
             />
           </label>
@@ -113,7 +87,15 @@
             accept="image/*"
             onchange="updateProfilePic(event)"
           />
-          <p id="user-email" class="user-email"></p>
+          <p id="user-email" class="user-email">user@example.com</p>
+
+          <!-- Video Call Button Below Email -->
+          <div class="video-call-container">
+            <button class="video-call-btn" onclick="startVideoCall()">
+              Video Call
+            </button>
+          </div>
+
           <div class="more-options">
             <button onclick="toggleOptions()">&#x22EE;</button>
             <div class="options-menu" id="options-menu">
@@ -126,23 +108,6 @@
         <div id="chat-box"></div>
 
         <!-- Message Input Section -->
-        <!-- <div class="message-input">
-          <input
-            type="text"
-            id="message"
-            placeholder="Type a message"
-            class="input-box"
-          />
-          <label for="fileInput" class="file-label">
-            <img
-              src="https://cdn-icons-png.freepik.com/512/8526/8526858.png?ga=GA1.1.1533417433.1733846717"
-              alt="Upload"
-              class="upload-icon"
-            />
-          </label>
-          <input type="file" id="fileInput" class="file-input" />
-          <button onclick="sendMessage()" class="btn send-btn">Send</button>
-        </div> -->
         <div class="message-input">
           <input
             type="text"
@@ -164,9 +129,15 @@
             onchange="sendFile()"
           />
           <button onclick="sendMessage()" class="btn send-btn">Send</button>
-          <!-- <button onclick="sendFile()" class="btn send-btn">Send File</button> -->
         </div>
       </div>
     </div>
+
+    <script>
+      function startVideoCall() {
+        window.location.href =
+          "https://video-calling-application-blue.vercel.app/"; // Replace with actual video call link
+      }
+    </script>
   </body>
 </html>
